@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { Input } from "react-native-elements/dist/input/Input";
 
-const socket = io("http://192.168.1.6:5000");
+// const socket = io("http://192.168.1.6:5000");
+const socket = io("https://chat-room-pk18.herokuapp.com/");
 
 export default function ChatScreen({ user, setUser, setIsLoggedIn }) {
   const [messages, setMessages] = useState([]);
