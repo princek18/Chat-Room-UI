@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, View, Button } from "react-native";
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { Input } from "react-native-elements/dist/input/Input";
+import { Audio } from "expo-av";
 
 // const socket = io("http://192.168.1.6:5000");
 const socket = io("https://chat-room-pk18.herokuapp.com/");
@@ -9,6 +10,25 @@ const socket = io("https://chat-room-pk18.herokuapp.com/");
 export default function ChatScreen({ user, setUser, setIsLoggedIn }) {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [sound, setSound] = useState();
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../assets/Water.mp3")
+    );
+    setSound(sound);
+
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
   useEffect(() => {
     socket.emit("new-user-connected", user);
   }, [user]);
@@ -19,6 +39,7 @@ export default function ChatScreen({ user, setUser, setIsLoggedIn }) {
         ...pre,
         { direction: "center", message: `${name} has joined!` },
       ]);
+      playSound();
     });
   }, [socket]);
 
@@ -28,6 +49,7 @@ export default function ChatScreen({ user, setUser, setIsLoggedIn }) {
         ...pre,
         { direction: "center", message: `${name} has left!` },
       ]);
+      playSound();
     });
   }, [socket]);
 
@@ -37,6 +59,7 @@ export default function ChatScreen({ user, setUser, setIsLoggedIn }) {
         ...pre,
         { direction: "left", message: `${data.name}: \n${data.message}` },
       ]);
+      playSound();
     });
   }, [socket]);
 
