@@ -41,9 +41,7 @@ export default function ChatScreen({ user, setUser, setIsLoggedIn }) {
       ]);
       playSound();
     });
-  }, [socket]);
 
-  useEffect(() => {
     socket.on("left", (name) => {
       setMessages((pre) => [
         ...pre,
@@ -51,9 +49,7 @@ export default function ChatScreen({ user, setUser, setIsLoggedIn }) {
       ]);
       playSound();
     });
-  }, [socket]);
 
-  useEffect(() => {
     socket.on("receive", (data) => {
       setMessages((pre) => [
         ...pre,

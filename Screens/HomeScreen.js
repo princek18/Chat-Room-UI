@@ -17,7 +17,7 @@ export default function HomeScreen({ setIsLoggedIn, user, setUser }) {
         errorStyle={{ color: "red" }}
         containerStyle={{ width: "60%" }}
       />
-      <Button onPress={handleSubmit} title="Submit" />
+      <Button onPress={handleSubmit} title="Save" />
     </View>
   );
 }
