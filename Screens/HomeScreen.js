@@ -21,7 +21,7 @@ export default function HomeScreen({ setIsLoggedIn, user, setUser }) {
     </View>
   );
 }
-//hellofewfewfw
+//hellobye
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
