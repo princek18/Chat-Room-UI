@@ -5,7 +5,7 @@ import { Input } from "react-native-elements/dist/input/Input";
 import { Audio } from "expo-av";
 
 // const socket = io("http://192.168.1.6:5000");
-const socket = io("https://chat-room-pk18.herokuapp.com/");
+const socket = io("https://chat-room-yzvz.onrender.com/");
 
 export default function ChatScreen({ user, setUser, setIsLoggedIn }) {
   const [messages, setMessages] = useState([]);
